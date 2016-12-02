@@ -4,10 +4,7 @@ const mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 var mongoUrl = 'mongodb://localhost:1337/accountsDatabase';
 
-function addUser(userName) {
-    /*
-      Add a new user to 'usersCollection' collection
-     */
+function addUser(email, passwordHash, rolesArr) {
     MongoClient.connect(url, function(err, db) {
         if (err) {
             console.log('Unable to connect to the mongoDB server. Error:', err);
@@ -17,6 +14,10 @@ function addUser(userName) {
 
             // do something to database
             var userCollection = db.collection('usersCollection');
+            var user = { }
+            userCollection.insert({username: email,
+                                   password: passwordHash,
+                                   roles: rolesArr });
 
             // Close connection
             db.close();
@@ -24,6 +25,7 @@ function addUser(userName) {
     });
 }
 
+// setup basic http server request
 http.createServer((req, res) => { // arrow function, like lambda expression
 
     // 1. Tell browser everything is okay
