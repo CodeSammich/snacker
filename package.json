@@ -1,0 +1,25 @@
+{
+  "name": "snacker",
+  "version": "1.0.0",
+  "description": "Snack Recommendation Web App",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeSammich/snacker.git"
+  },
+  "keywords": [
+    "snacker"
+  ],
+  "author": "Samuel Zhang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodeSammich/snacker/issues"
+  },
+  "homepage": "https://github.com/CodeSammich/snacker#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
