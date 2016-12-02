@@ -1,6 +1,7 @@
-const http = require('http');
-const mongodb = require('mongodb');
+const express = require('express');
+var app = express();
 
+const mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 var mongoUrl = 'mongodb://localhost:1337/accountsDatabase';
 
@@ -25,14 +26,20 @@ function addUser(email, passwordHash, rolesArr) {
     });
 }
 
-// setup basic http server request
-http.createServer((req, res) => { // arrow function, like lambda expression
 
-    // 1. Tell browser everything is okay
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
+var myLogger = function(req, res, next) {
+    var d = new Date();
+    var dateAndTime = d.getHours() + "h:"
+        + d.getMinutes() + "m:"
+        + d.getSeconds() + "s";
+    console.log("App started at " + dateAndTime);
+    next()
+};
 
-    // 2. Send announced text
-    res.end('Hello, World!\n');
-}).listen(1337);
+app.use(myLogger);
 
-console.log("Server is running at http://localhost:1337");
+app.get('/', function(req, res) {
+    res.send('Hello, world!');
+});
+
+app.listen(1337);
