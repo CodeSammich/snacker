@@ -15,15 +15,22 @@ function addUser(email, passwordHash, rolesArr) {
 
             // do something to database
             var userCollection = db.collection('usersCollection');
-            var user = { }
-            userCollection.insert({username: email,
-                                   password: passwordHash,
-                                   roles: rolesArr });
+            var user = {username: email,
+                        password: passwordHash,
+                        roles: rolesArr};
+            userCollection.insert(user, function(err, result) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log('Inserted %d documents into the "users" collection.'
+                                + 'The documents inserted with "_id" are:',
+                                result.length, result);
+                }
+            });
 
             // Close connection
             db.close();
-        }
-    });
+        }});
 }
 
 
