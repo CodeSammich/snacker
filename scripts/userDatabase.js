@@ -1,6 +1,3 @@
-const express = require('express');
-var app = express();
-
 const mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 var mongoUrl = 'mongodb://localhost:1337/accountsDatabase';
@@ -11,7 +8,7 @@ function addUser(email, passwordHash, rolesArr) {
             console.log('Unable to connect to the mongoDB server. Error:', err);
         } else {
             // connected to database
-            console.log('Connection established to', url);
+            console.log('Connection established to', mongoUrl);
 
             // do something to database
             var userCollection = db.collection('usersCollection');
@@ -22,9 +19,9 @@ function addUser(email, passwordHash, rolesArr) {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log('Inserted %d documents into the "users" collection.'
-                                + 'The documents inserted with "_id" are:',
-                                result.length, result);
+                    let message = 'Inserted %d documents into "usersCollection"'
+                    + 'The documents inserted with "_id" are:';
+                    console.log(message, result.length, result);
                 }
             });
 
@@ -32,21 +29,3 @@ function addUser(email, passwordHash, rolesArr) {
             db.close();
         }});
 }
-
-
-var myLogger = function(req, res, next) {
-    var d = new Date();
-    var dateAndTime = d.getHours() + "h:"
-        + d.getMinutes() + "m:"
-        + d.getSeconds() + "s";
-    console.log("App started at " + dateAndTime);
-    next()
-};
-
-app.use(myLogger);
-
-app.get('/', function(req, res) {
-    res.send('Hello, world!');
-});
-
-app.listen(1337);
