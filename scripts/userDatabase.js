@@ -15,7 +15,14 @@ function addUser(email, passwordHash, rolesArr) {
             var user = {username: email,
                         password: passwordHash,
                         roles: rolesArr};
-            userCollection.insert(user, function(err, result) {
+
+            if (userCollection.find({username: email}) !== null) {
+                // if account with same email exists
+                db.close();
+                return;
+            }
+
+            userCollection.insertOne(user, function(err, result) {
                 if (err) {
                     console.log(err);
                 } else {
