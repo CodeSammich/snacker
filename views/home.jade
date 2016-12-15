@@ -1,23 +1,45 @@
 html
   head
     title=title
+    link(type="type/css", href="static/css/bootstrap.min.css", rel="stylesheet")
     link(href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css', rel='stylesheet')
-  body
-    div.container
-    div.jumbotron
-    h1 Hello!
+    link(href="http://bootswatch.com/journal/bootstrap.css", rel="stylesheet")
+    script(type="text/javascript" async, src="http://www.google-analytics.com/ga.js")
 
-    if user
-      p Welcome, #{user.fullName}
-      p
-      a.small(href="profile") Edit my profile
-        form(action='/logout', method='POST')
-        button.btn.btn-default(type="submit") Logout
-     else
-       p Welcome to my app, ready to get started?
-         p
-         a.btn.btn-primary(href="/login") Login now
-         p
-          span.small Don't have an account?
-          span &nbsp;
-              a.small(href="/register") Register now
+  body(data-gr-c-s-loaded="true")
+    div.container
+      div.navbar.navbar-default.navbar-fixed-top
+        div.container
+          div.navbar-header
+            button(type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed")
+            span.glyphicon.glyphicon-nav(aria-hidden="true")
+            a(href="#" class="navbar-brand") Snacker
+
+          div.navbar-collapse.collapse(style="height: 1px;")
+            ul.nav.navbar-nav
+              li.active
+                a(href="#") Home
+              li
+                a(href="#about") About
+              li.dropdown
+                a(href="#", data-toggle="dropdown", class="dropdown-toggle")
+                //  bolded caret symbol for dropdown menu
+                b.caret
+
+    div.container
+      h1 Hello!
+
+      if user
+        p Welcome, #{user.fullName}
+        p
+          a.small(href="profile") Edit my profile
+          form(action='/logout', method='POST')
+          button.btn.btn-default(type="submit") Logout
+      else
+        p Welcome to my app, ready to get started?
+          p
+            a.btn.btn-primary(href="/login") Login now
+          p
+            span.small Don't have an account?
+            span &nbsp;
+            a(href="/register") Register now
