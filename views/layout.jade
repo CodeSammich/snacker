@@ -1,0 +1,32 @@
+// layout.jade
+doctype html
+html(lang="en")
+  block head
+    head
+      title=title
+      link(type="type/css", href="static/css/bootstrap.min.css", rel="stylesheet")
+      link(href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css', rel='stylesheet')
+      link(href="http://bootswatch.com/journal/bootstrap.css", rel="stylesheet")
+      script(type="text/javascript" async, src="http://www.google-analytics.com/ga.js")
+
+  block navbar
+    #navbar
+      body(data-gr-c-s-loaded="true")
+        div.container
+          div.navbar.navbar-default.navbar-fixed-top
+            div.container
+              div.navbar-header
+                button(type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed")
+                span.glyphicon.glyphicon-nav(aria-hidden="true")
+                a(href="#" class="navbar-brand") Snacker
+
+              div.navbar-collapse.collapse(style="height: 1px;")
+                ul.nav.navbar-nav
+                  li.active
+                    a(href="#") Home
+                  li
+                    a(href="#about") About
+                    li.dropdown
+                     a(href="#", data-toggle="dropdown", class="dropdown-toggle")
+                     //  bolded caret symbol for dropdown menu
+                     b.caret
