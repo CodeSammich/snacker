@@ -1,6 +1,6 @@
 const mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
-var mongoUrl = 'mongodb://localhost:1337/accountsDatabase';
+var mongoUrl = 'mongodb://localhost:3000/accountsDatabase';
 
 function addUser(email, passwordHash, rolesArr) {
     MongoClient.connect(url, function(err, db) {
@@ -14,7 +14,7 @@ function addUser(email, passwordHash, rolesArr) {
             var userCollection = db.collection('usersCollection');
             var user = {username: email,
                         password: passwordHash,
-                        roles: rolesArr};
+                        roles: rggolesArr};
 
             if (userCollection.find({username: email}) !== null) {
                 // if account with same email exists

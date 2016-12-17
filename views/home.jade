@@ -5,11 +5,9 @@ block append head
 
 block append navbar
   #homepageImage.container
-    img(src="images/beautiful_avocadoes.jpg")
-    // User Login Box
-    div.container
-      h1 Hello!
-      if user
+    //    img(src="images/beautiful_avocadoes.jpg")
+    #registration.container
+      if userLoggedIn
         p Welcome, #{user.fullName}
         p
           a.small(href="profile") Edit my profile
@@ -17,9 +15,20 @@ block append navbar
           button.btn.btn-default(type="submit") Logout
       else
         p Welcome to Snacker, your personal food recommender. Ready to get started?
-        p
-          a.btn.btn-primary(href="/register") Login now
-        p
-          span.small Don't have an account?
-          span &nbsp;
-            a(href="/register") Register now
+        div.col-lg-6
+          div.well.bs-component
+            form.form-horizontal
+              fieldset
+                div.form-group
+                  label.col-lg-2.control-label(for="inputEmail")
+                  #inputEmail.col-lg-10
+                    input(type="text", class="form-control", id="inputEmail", placeholder="Email")
+                div.form-group
+                  label.col-lg-2.control-label(for="inputPassword")
+                  #inputPassword.col-lg-10
+                    input.form-control(type="password", placeholder="Password")
+                div.form-group
+                  label.col-lg-2.control-label(for="confirmPassword")
+                  #confirmPassword.col-lg-10
+                    input.form-control(type="password", placeholder="Confirm Password")
+          a.btn.btn-primary.btn-lg(href="/register") Sign up for Snacker
