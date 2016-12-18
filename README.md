@@ -15,6 +15,10 @@ To run application, use
 
     node build/built.js
 
+### Design Doc
+
+Design ideas can be found [here](https://docs.google.com/document/d/1NRVciKRkv3UVKZBS8Hax1kBmz7WaAsyJsSF7vmZtmg8/edit?usp=sharing)
+
 # Dev-Log
 - *12/18/16*
   - A bunch of NPM additions, updated running instructions
