@@ -4,31 +4,38 @@ extends layout
 block append head
 
 block append navbar
-  #homepageImage.container
+  #homepageImage.container-responsive.position-relative
     //    img(src="images/beautiful_avocadoes.jpg")
-    #registration.container
+    #welcome.container
       if userLoggedIn
-        p Welcome, #{user.fullName}
+        p Welcome, #{user.firstName}
         p
           a.small(href="profile") Edit my profile
           form(action='/logout', method='POST')
           button.btn.btn-default(type="submit") Logout
       else
-        p Welcome to Snacker, your personal food recommender. Ready to get started?
-        div.col-lg-6
-          div.well.bs-component
-            form.form-horizontal
-              fieldset
-                div.form-group
-                  label.col-lg-2.control-label(for="inputEmail")
-                  #inputEmail.col-lg-10
-                    input(type="text", class="form-control", id="inputEmail", placeholder="Email")
-                div.form-group
-                  label.col-lg-2.control-label(for="inputPassword")
-                  #inputPassword.col-lg-10
-                    input.form-control(type="password", placeholder="Password")
-                div.form-group
-                  label.col-lg-2.control-label(for="confirmPassword")
-                  #confirmPassword.col-lg-10
-                    input.form-control(type="password", placeholder="Confirm Password")
-          a.btn.btn-primary.btn-lg(href="/register") Sign up for Snacker
+        #home_text.float-md-left.col-lg-6
+          h1.alt-h1.text-shadow-dark.text-white.lh-condensed.mb-3 How people share food
+          p.lead Your personal food recommender. Ready to get started?
+
+        #registration_form.float-md-right.col-lg-6
+          div.d-none-sm-dn
+            div.well.bs-component
+              form.form-horizontal(method="post", action="/register")
+                fieldset
+                  div.form-group
+                    #firstName.col-lg-6
+                      input(type="text", class="form-control", id="firstName", placeholder="First", name="firstName")
+                    #lastName.col-lg-6
+                      input(type="text", class="form-control", id="lastName", placeholder="Last", name="lastName")
+                  div.form-group
+                    #inputEmail.col-lg-12
+                      input(type="text", class="form-control", id="inputEmail", placeholder="Email", name="inputEmail")
+                  div.form-group
+                    #inputPassword.col-lg-12
+                      input.form-control(type="password", placeholder="Password", name="inputPassword")
+                  div.form-group
+                    #confirmPassword.col-lg-12
+                      input.form-control(type="password", placeholder="Confirm Password")
+                  #submitButton(style="text-align: center")
+                      input.btn.btn-primary.btn-lg(type="submit", value="Sign up for Snacker")
