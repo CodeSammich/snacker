@@ -91,3 +91,6 @@ ENV/
 # Emacs
 *~
 *#
+
+# Env for keys
+secret_key.env

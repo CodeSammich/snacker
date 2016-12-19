@@ -1,14 +1,14 @@
 const mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
-var mongoUrl = 'mongodb://localhost:3000/accountsDatabase';
+var accountsUrl = 'mongodb://localhost:27017/accountsDatabase';
 
 function addUser(email, passwordHash, firstName, lastName, rolesArr) {
-    MongoClient.connect(url, function(err, db) {
+    MongoClient.connect(accountsUrl, function(err, db) {
         if (err) {
             console.log('Unable to connect to the mongoDB server. Error:', err);
         } else {
             // connected to database
-            console.log('Connection established to', mongoUrl);
+            console.log('Connection established to', accountsUrl);
 
             // do something to database
             var userCollection = db.collection('usersCollection');

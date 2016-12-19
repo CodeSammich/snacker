@@ -29,6 +29,9 @@ app.post('/register', function(req, res) {
 
     bcrypt.hash(password, saltRounds, function(err, hash) {
         addUser(email, hash, firstName, lastName, ['user']);
-        console.log(hash);
-    })
+    });
+
+    // Todo: login user
+
+    res.redirect('/');
 });
