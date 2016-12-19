@@ -93,4 +93,4 @@ ENV/
 *#
 
 # Env for keys
-secret_key.env
+*.env

@@ -1,5 +1,4 @@
 var gradient = require('adaptive-gradient'); // implement later
-var bodyParser = require('body-parser');
 var bcrypt = require('bcrypt');
 
 // bcrypt: password hashing, repo: https://github.com/kelektiv/node.bcrypt.js
@@ -13,13 +12,6 @@ app.get('/', function(req, res) {
         userLoggedIn: userLoggedIn
     });
 });
-
-// To pass POST data
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-
-app.use(bodyParser.json());
 
 app.post('/register', function(req, res) {
     var firstName = req.body.firstName;

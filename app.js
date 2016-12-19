@@ -1,13 +1,15 @@
 var express = require('express');
+var dotenv = require('dotenv');
+var bodyParser = require('body-parser');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
+
 var app = express();
-var env = (function() { // local env for session secret key
-    var Habitat = require("habitat");
-    Habitat.load();
-    return new Habitat();
-}())
 
 app.set('views', 'views');
 app.set('view engine', 'jade');
+
+dotenv.config(); // to get env secret key
 
 // To pass POST data
 app.use(bodyParser.urlencoded({
@@ -16,7 +18,12 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-app.use(express.cookieParser());
-app.use(express.session({secret: env.get('SESSION_SECRET')});
+app.use(cookieParser());
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true
+}));
 
 app.listen(3000);
