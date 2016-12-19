@@ -7,6 +7,8 @@ const saltRounds = 8; // roughly 40 hashes/sec on 2Ghz core
 var userLoggedIn = false;
 
 app.get('/', function(req, res) {
+    req.session.lastPage = '/';
+
     res.render('home', {
         title: 'Snacker',
         userLoggedIn: userLoggedIn
@@ -25,5 +27,9 @@ app.post('/register', function(req, res) {
 
     // Todo: login user
 
-    res.redirect('/');
+    if (!req.session.lastPage {
+        req.session.lastPage = '/';
+    }
+    console.log('/register redirected to ' + req.session.lastPage);
+    res.redirect(req.session.lastPage);
 });
