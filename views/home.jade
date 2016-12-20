@@ -19,6 +19,23 @@ block append navbar
           p.lead Your personal food recommender. Ready to get started?
 
         #registration_form.float-md-right.col-lg-6
+          // Alert box
+          if !passwordsMatch || userAlreadyExists || passTooShort || !passGoodChars
+            #alertError.alert.alert-dismissible.alert-danger
+              if !passwordsMatch
+                strong - Your passwords do not match.
+                p
+              if userAlreadyExists
+                strong - Another user with the same email already exists.
+                p
+              if passTooShort || !passGoodChars
+                strong - Your password is too short. It must be at least 7 characters long.
+                p
+                strong - Your password must only consist of numbers (0-9) or letters of any case (a-Z).
+          if successfullyRegistered
+            #alertSuccess.alert.alert-dismissible.alert-success
+              strong Congruatulations! You have registered for an account!
+
           div.d-none-sm-dn
             div.well.bs-component
               form.form-horizontal(method="post", action="/register")
@@ -28,14 +45,14 @@ block append navbar
                       input(type="text", class="form-control", id="firstName", placeholder="First", name="firstName")
                     #lastName.col-lg-6
                       input(type="text", class="form-control", id="lastName", placeholder="Last", name="lastName")
-                  div.form-group
+                  div.form-group(class=(userAlreadyExists) ? "has-error" : "")
                     #inputEmail.col-lg-12
-                      input(type="text", class="form-control", id="inputEmail", placeholder="Email", name="inputEmail")
-                  div.form-group
+                        input(type="text", class="form-control", id="inputEmail", placeholder="Email", name="inputEmail")
+                  div.form-group(class=(passTooShort || !passGoodChars) ? "has-error" : "")
                     #inputPassword.col-lg-12
                       input.form-control(type="password", placeholder="Password", name="inputPassword")
                   div.form-group
                     #confirmPassword.col-lg-12
-                      input.form-control(type="password", placeholder="Confirm Password")
+                      input.form-control(type="password", placeholder="Confirm Password", name="confirmPassword")
                   #submitButton(style="text-align: center")
                       input.btn.btn-primary.btn-lg(type="submit", value="Sign up for Snacker")

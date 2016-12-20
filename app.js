@@ -1,10 +1,11 @@
-var express = require('express');
-var dotenv = require('dotenv');
-var bodyParser = require('body-parser');
-var session = require('express-session');
-var cookieParser = require('cookie-parser');
+const express = require('express');
+const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+const cookieParser = require('cookie-parser');
 
-var app = express();
+const app = express();
 
 app.set('views', 'views');
 app.set('view engine', 'jade');
@@ -22,6 +23,7 @@ app.use(cookieParser());
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
+    store: new MongoStore({ url: 'mongodb://localhost:27017/sessionDatabase'}),
     resave: true,
     saveUninitialized: true
 }));
